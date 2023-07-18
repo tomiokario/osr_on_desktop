@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# 言語選択
+read -p "言語を指定してください(en/jp/jp_v): " lang
+
+#ループ
+while :
+do
+    echo;echo
+    echo "================================================="
+    # 画像PATHの更新を尋ねる
+    echo "画像ファイルをドラッグ&ドロップ(終了する場合はqを入力)"
+    read -p "画像PATH or q: " filepath
+
+    # "q"が入力されたら終了
+    if [ ${filepath}="q" ];then
+        break
+    fi
+
+    # 文字起こし
+    pwd;echo "文字起こしを開始します"
+    python3 ~/Desktop/osr.py "${filepath}" ${lang}                 # 文字起こし
+
+
+done
+echo "終了します."
